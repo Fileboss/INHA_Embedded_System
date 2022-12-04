@@ -23,6 +23,7 @@ int main(void)
 	ClockInit();
     //Initialize the USART2 to communicate with the PC
 	USART2_Init();
+    
     //Initialize the GPIOA
 	GPIO_Init(GPIOA, 0, GPIO_INPUT_PULLDOWN); 
     GPIO_Init(GPIOA, 1, GPIO_INPUT_PULLDOWN);
