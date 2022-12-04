@@ -5,18 +5,20 @@
 
 #include "st_basic.h"
 
+
+//Motor
 void Step(int step); // Function to move the stepper motor
+const int stepperPin[4] = { 2, 3, 6, 7 }; // Pins for the stepper motor
+const unsigned int stepperFullState[4][4] ={{ 1, 1, 0, 0 },
+											{ 0, 1, 1, 0 },
+											{ 0, 0, 1, 1 },
+											{ 1, 0, 0, 1 } }; // Full step states
+
+int currentStep = 0;
 
 int main(void)
 {
-    const int stepperPin[4] = { 2, 3, 6, 7 }; // Pins for the stepper motor
-    const unsigned int stepperFullState[4][4] ={{ 1, 1, 0, 0 },
-												{ 0, 1, 1, 0 },
-												{ 0, 0, 1, 1 },
-												{ 1, 0, 0, 1 } }; // Full step states
 
-    int currentStep = 0;
-    void Step(int step);
 
 
     //Initialize the clock
@@ -46,10 +48,13 @@ void EXTI0_IRQHandler(void)
 {
 	USART2_TX_String("I got a button input. Starting the fan\n");
     //Start the engine for 10 seconds
-    Step(1); // Move the stepper motor
-    Delay(10000); // Wait 10 seconds
-    Step(0); // Stop the stepper motor
-    //Stop the engine
+	unsigned int prevMillis = sysMillis;
+	while (sysMillis - prevMillis <= 10000)
+	{
+		Step(1);
+		Delay(10);
+	}
+
 
 	EXTI->PR1 |= EXTI_PR1_PIF0;
 }
