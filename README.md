@@ -6,5 +6,6 @@ Students :
 - RODRIGUEZ Diego
 - PERROT Séraphin
 - TAKHTANOVA Moldir
+- FAUVEAU Nell
 
 Please find the source code and its explanation in its dedicated repository.
