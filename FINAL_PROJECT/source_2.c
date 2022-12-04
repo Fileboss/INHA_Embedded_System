@@ -33,10 +33,6 @@ int main(void)
 
 	//Ultrasonic GPIO initialization
 	GPIO_Init(GPIOC, 14, GPIO_OUTPUT);
-	
-	NVIC->ISER[EXTI0_IRQn / 32] = (1 << (EXTI0_IRQn % 32)); //Enable the interrupt
-	EXTI->IMR1 |= EXTI_IMR1_IM0; 
-	EXTI->RTSR1 |= EXTI_RTSR1_RT0; 
 
 	//Initialize the normal distance of the sensor
 	unsigned int initialDistance = InputCapture();
@@ -56,7 +52,6 @@ int main(void)
 void Blow(void)
 {
 	USART2_TX_String("I detected a hand. Starting the fan\n");
-    //Start the engine for 10 seconds
     //Start the engine for 10 seconds
 	unsigned int prevMillis = sysMillis;
 	while (sysMillis - prevMillis <= blowingDurantion)

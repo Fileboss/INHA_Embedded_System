@@ -27,9 +27,9 @@ int main(void)
 	USART2_Init();
     
     //Initialize the GPIOA
-	GPIO_Init(GPIOA, 0, GPIO_INPUT_PULLDOWN); 
-    GPIO_Init(GPIOA, 1, GPIO_INPUT_PULLDOWN);
-	GPIO_Init(GPIOA, 2, GPIO_INPUT_PULLDOWN);
+	GPIO_Init(GPIOA, 0, GPIO_INPUT_PULLDOWN); // Joystick button
+	
+	//Initialize the GPIOB for the stepper motor
 	for (int i = 0; i < 4; i++)
         GPIO_Init(GPIOB, stepperPin[i], GPIO_OUTPUT);
 	
