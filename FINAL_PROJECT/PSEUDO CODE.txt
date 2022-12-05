@@ -1,0 +1,50 @@
+PSEUDO CODE
+
+
+Initialize GPIO;
+Initialize Stepper Motor;
+Initialize Ultrasonic Sensor;
+
+Get the initial distance of the sensor;
+
+while(1)
+{
+    Wait 200 ms;
+    if (distance detected by the sensor has been significantly changed)
+    {
+        //Blow
+        while (blow duration is not over)
+        {
+            Rotate the stepper motor
+        }
+    }
+
+
+    if (correct code input is detected from keypad)
+    {
+        // enter administration mode
+        while (1)
+        {
+            if (joystick upper button is pressed)
+            {
+                increase the blow power;
+            }
+            else if (joystick lower button is pressed)
+            {
+                decrease the blow power;
+            }
+            else if (joystick left button is pressed)
+            {
+                decrease the blow duration;
+            }
+            else if (joystick right button is pressed)
+            {
+                increase the blow duration;
+            }
+            else if (joystick center button is pressed)
+            {
+                exit administration mode;
+            }
+        }
+    }
+}
