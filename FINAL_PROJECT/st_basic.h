@@ -16,5 +16,7 @@ void Delay(unsigned int duration);
 char USART2_RX(void);
 void USART2_TX(char character);
 void USART2_TX_String(const char *string);
+int getSysMillis(void); 
+
 
 #endif

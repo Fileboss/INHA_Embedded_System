@@ -12,7 +12,7 @@ const int stepperPin[4] = { 2, 3, 6, 7 }; // Pins for the stepper motor
 												{ 0, 0, 1, 1 },
 												{ 1, 0, 0, 1 } }; // Full step states
 const int blowingDurantion = 10000; // Duration of the blowing in milliseconds
-
+void Blow(void) ;
 int currentStep = 0;
 
 //sensor
@@ -49,15 +49,16 @@ int main(void)
 	}
 }
 
-void Blow(void)
+void Blow()
 {
 	USART2_TX_String("I detected a hand. Starting the fan\n");
     //Start the engine for 10 seconds
-	unsigned int prevMillis = sysMillis;
-	while (sysMillis - prevMillis <= blowingDurantion)
+	unsigned int prevMillis = getSysMillis();
+	while (getSysMillis() - prevMillis <= blowingDurantion)
 	{
 		Step(1);
 	}
+	return;
 }
 
 void Step(int step)
@@ -85,7 +86,7 @@ void Step(int step)
 		step -= direction;
 		Delay(2);
 	}
-
+}
 	unsigned int InputCapture(void)
 {
 	//Check flagCaptureMiss

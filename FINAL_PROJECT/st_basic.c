@@ -74,3 +74,5 @@ void USART2_TX_String(const char *string)
 }
 
 void SysTick_Handler(void) { sysMillis++; }
+
+int getSysMillis(void) { return sysMillis; }

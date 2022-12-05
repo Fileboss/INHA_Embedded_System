@@ -5,7 +5,6 @@
 
 #include "st_basic.h"
 
-
 //Motor
 void Step(int step); // Function to move the stepper motor
 const int stepperPin[4] = { 2, 3, 6, 7 }; // Pins for the stepper motor
@@ -15,6 +14,8 @@ const unsigned int stepperFullState[4][4] ={{ 1, 1, 0, 0 },
 											{ 1, 0, 0, 1 } }; // Full step states
 
 int currentStep = 0;
+const int blowingDurantion = 10000; // Duration of the blowing in milliseconds
+
 
 int main(void)
 {
@@ -48,11 +49,9 @@ void EXTI0_IRQHandler(void)
 {
 	USART2_TX_String("I got a button input. Starting the fan\n");
     //Start the engine for 10 seconds
-	unsigned int prevMillis = sysMillis;
-	while (sysMillis - prevMillis <= 10000)
-	{
+	unsigned int prevMillis = getSysMillis();
+	while (getSysMillis() - prevMillis <= blowingDurantion)	{
 		Step(1);
-		Delay(10);
 	}
 
 
@@ -84,3 +83,4 @@ void Step(int step)
 		step -= direction;
 		Delay(2);
 	}
+}
